@@ -4,7 +4,7 @@
 entries:
   - title: links
     entries:
-      - title: "GitHub"
+      - title: "github"
         url: "https://github.com/ColdeZhang"
-      - title: "Personal Code Repository"
+      - title: "self-host repo"
         url: "https://ssl.lunadeer.cn:14446/zhangyuheng"
