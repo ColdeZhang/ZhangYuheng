@@ -31,6 +31,13 @@ github_username: ColdeZhang
 
 # Build settings
 theme: no-style-please
+
+theme_config:
+  appearance: "auto" # can be "light", "dark" or "auto"
+
+sass:
+  style: :compressed
+
 plugins:
   - jekyll-feed
 # Exclude from processing.
