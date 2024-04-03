@@ -2,9 +2,30 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
+  - title: brief
+  - title: major
+    entries:
+      - title: c/c++/python/shell/cudac
+      - title: linux/macos
+      - title: neural-network/deep-learnin
+      - title: time-series/forecasting/computer-vision
+      - title: distributed-system/parallel-computing
+      - title: docker/container/ci-cd
+  - title: contact
+    entries:
+      - title: "email: zhangyuheng@lunadeer.cn"
+        url: "mailto:zhangyuheng@lunadeer.cn"
+      - title: "qq: 2751268851"
   - title: links
     entries:
-      - title: "github"
-        url: "https://github.com/ColdeZhang"
-      - title: "self-host repo"
+      - title: self-host repo
         url: "https://ssl.lunadeer.cn:14446/zhangyuheng"
+      - title: github (^ mirror)
+        url: "https://github.com/ColdeZhang"
+      - title: blog & docs
+        url: "https://ssl.lunadeer.cn:14448/"
+  - title: hobby
+    entries:
+      - title: minecraft
+        url: "https://ssl.lunadeer.cn:14433/"
+      - title: film
