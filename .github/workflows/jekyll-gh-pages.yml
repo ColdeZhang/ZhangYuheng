@@ -30,9 +30,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Rename "theme no-style-please" -> "theme jekyll-theme-no-style-please"
+      - name: Rename "theme no-style-please" -> "remote_theme no-style-please"
         run: |
-          sed -i 's/theme: no-style-please/theme: jekyll-theme-no-style-please/g' ./docs/_config.yml
+          sed -i 's/theme:/remote_theme:/g' ./docs/_config.yml
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
