@@ -5,12 +5,11 @@ entries:
   - title: brief
   - title: major
     entries:
-      - title: c/c++/python/shell/cudac
-      - title: linux/macos
+      - title: c/c++/python/shell/cudac/java
       - title: neural-network/machine-learning
       - title: time-series/forecasting/computer-vision
       - title: distributed-system/parallel-computing
-      - title: docker/container/ci-cd
+      - title: linux/macos/docker/container/ci-cd
   - title: project - ongoing
     post_list:
       limit: 5
