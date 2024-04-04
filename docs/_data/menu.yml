@@ -7,16 +7,19 @@ entries:
     entries:
       - title: c/c++/python/shell/cudac
       - title: linux/macos
-      - title: neural-network/deep-learnin
+      - title: neural-network/machine-learning
       - title: time-series/forecasting/computer-vision
       - title: distributed-system/parallel-computing
       - title: docker/container/ci-cd
+  - title: project
+    post_list:
+      limit: 5
+      show_more: true
   - title: contact
     entries:
-      - title: "email: zhangyuheng@lunadeer.cn"
-        url: "mailto:zhangyuheng@lunadeer.cn"
+      - title: "email: <a href='mailto:zhangyuheng@lunadeer.cn'> zhangyuheng@lunadeer.cn </a>"
       - title: "qq: 2751268851"
-  - title: links
+  - title: link
     entries:
       - title: self-host repo
         url: "https://ssl.lunadeer.cn:14446/zhangyuheng"
