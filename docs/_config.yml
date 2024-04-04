@@ -30,7 +30,7 @@ theme: no-style-please
 theme_config:
   appearance: "auto" # can be "light", "dark" or "auto"
   back_home_text: ".." # customize text for homepage link in post layout
-  date_format: "%Y-%m-%d" # customize how date is formatted
+  date_format: "%Y-%m" # customize how date is formatted
 
 plugins:
   - jekyll-feed
