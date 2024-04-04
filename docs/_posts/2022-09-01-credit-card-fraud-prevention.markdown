@@ -1,6 +1,6 @@
 ---
 layout: post
 title: "Credit Card Fraud Prevention"
-date: 2022-09-01 22:48:07 +0000
+date: 2021.9 - 2022.9
 categories: machine-learning svm
 ---
