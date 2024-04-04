@@ -11,10 +11,16 @@ entries:
       - title: time-series/forecasting/computer-vision
       - title: distributed-system/parallel-computing
       - title: docker/container/ci-cd
+  - title: project - ongoing
+    post_list:
+      limit: 5
+      show_more: true
+      category: ongoing
   - title: project - finished
     post_list:
       limit: 5
       show_more: true
+      category: finished
   - title: contact
     entries:
       - title: "email: <a href='mailto:zhangyuheng@lunadeer.cn'> zhangyuheng@lunadeer.cn </a>"
