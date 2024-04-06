@@ -43,3 +43,8 @@ entries:
       - title: minecraft
         url: "https://ssl.lunadeer.cn:14433/"
       - title: film appreciation
+  - title: language
+    entries:
+      - title: 中文 (native)
+      - title: English (fluent)
+      - title: 日本語 (basic)
