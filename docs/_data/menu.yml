@@ -3,6 +3,9 @@
 
 entries:
   - title: brief
+  - title: education
+    entries:
+      - title: 2018.9 - 2022.6 south west jiaotong university
   - title: major
     entries:
       - title: c / c++ / python / shell / cudac / java
@@ -36,4 +39,4 @@ entries:
     entries:
       - title: minecraft
         url: "https://ssl.lunadeer.cn:14433/"
-      - title: film
+      - title: film appreciation
