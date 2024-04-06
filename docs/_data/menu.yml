@@ -3,6 +3,9 @@
 
 entries:
   - title: brief
+    entries:
+      - title: I'm Zhang Yuheng, graduate from South West Jiaotong University (class of 2022). Proficient in C/C++, Python, Shell, CUDA, and Java, I specialize in neural networks, machine learning, computer vision, and distributed systems. Beyond work, I enjoy Minecraft and film.
+      - title: Years of dedication to becoming a true engineer. I firmly believe that engineers possess versatile minds that forge connections between science, technology, and society.
   - title: education
     entries:
       - title: 2018.9 - 2022.6 south west jiaotong university
