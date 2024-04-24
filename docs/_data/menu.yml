@@ -32,7 +32,7 @@ entries:
       - title: "qq: 2751268851"
   - title: link
     entries:
-      - title: self-host repo
+      - title: my repo (self-hosted)
         url: "https://ssl.lunadeer.cn:14446/zhangyuheng"
       - title: github (^ mirror)
         url: "https://github.com/ColdeZhang"
