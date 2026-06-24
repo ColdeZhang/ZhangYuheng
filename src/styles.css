@@ -24,3 +24,51 @@ a {
   font: inherit;
   color: inherit;
 }
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8vh clamp(1.25rem, 5vw, 5rem);
+}
+
+.text-composition {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.meta-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.72em;
+  margin-bottom: 1.72em;
+}
+
+.mother-paragraph {
+  margin: 0;
+}
+
+.text-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.text-link {
+  position: relative;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    align-items: flex-start;
+    padding: 1.72em 1rem;
+  }
+
+  .meta-line {
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    gap: 0;
+  }
+}
