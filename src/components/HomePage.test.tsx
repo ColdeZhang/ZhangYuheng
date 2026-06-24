@@ -15,7 +15,7 @@ describe('HomePage', () => {
       screen.getByText((text, element) =>
         Boolean(
           element?.classList.contains('mother-paragraph') &&
-            text.startsWith('我是张宇衡，数据算法工程师'),
+            element.textContent?.startsWith('我是张宇衡，数据算法工程师'),
         ),
       ),
     ).toBeInTheDocument();
@@ -31,9 +31,19 @@ describe('HomePage', () => {
       screen.getByText((text, element) =>
         Boolean(
           element?.classList.contains('mother-paragraph') &&
-            text.startsWith("I'm Yuheng Zhang, a data algorithm engineer"),
+            element.textContent?.startsWith("I'm Yuheng Zhang, a data algorithm engineer"),
         ),
       ),
     ).toBeInTheDocument();
+  });
+
+  it('expands an inline keyword in place', async () => {
+    const user = userEvent.setup();
+    render(<HomePage />);
+
+    await user.click(screen.getByRole('button', { name: '数据算法工程师' }));
+
+    expect(screen.getByText(/不只做单点建模/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '数据算法工程师' })).toHaveAttribute('aria-expanded', 'true');
   });
 });
