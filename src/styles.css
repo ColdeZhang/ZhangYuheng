@@ -35,6 +35,7 @@ a {
 .text-composition {
   width: min(1120px, 100%);
   margin: 0 auto;
+  animation: language-reflow 220ms ease;
 }
 
 .meta-line {
@@ -156,6 +157,17 @@ a {
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes language-reflow {
+  from {
+    opacity: 0.72;
+    filter: blur(0.06em);
+  }
+  to {
+    opacity: 1;
     filter: blur(0);
   }
 }

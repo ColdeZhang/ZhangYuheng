@@ -18,7 +18,7 @@ export function HomePage() {
         setActiveKeyword(null);
       }
     }}>
-      <section className="text-composition" aria-label="Personal introduction">
+      <section className="text-composition" data-locale={locale} aria-label="Personal introduction">
         <MetaLine
           displayName={content.meta.displayName}
           email={content.meta.email}

@@ -56,4 +56,15 @@ describe('HomePage', () => {
     expect(screen.getByText(/冻干机冷凝腔外漏/)).toBeInTheDocument();
     expect(screen.getByText(/真正进入生产决策链路/)).toBeInTheDocument();
   });
+
+  it('keeps the same semantic keyword expanded across language changes', async () => {
+    const user = userEvent.setup();
+    render(<HomePage />);
+
+    await user.click(screen.getByRole('button', { name: 'Agent 化实践' }));
+    await user.click(screen.getByRole('button', { name: /switch language/i }));
+
+    expect(screen.getByText(/Lodey is an open-source/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Agent-based practice' })).toHaveAttribute('aria-expanded', 'true');
+  });
 });
