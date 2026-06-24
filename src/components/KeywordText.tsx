@@ -5,10 +5,11 @@ type KeywordTextProps = {
   text: string;
   active: boolean;
   defocused: boolean;
+  controls?: string;
   onToggle: (id: KeywordId) => void;
 };
 
-export function KeywordText({ id, text, active, defocused, onToggle }: KeywordTextProps) {
+export function KeywordText({ id, text, active, defocused, controls, onToggle }: KeywordTextProps) {
   return (
     <button
       type="button"
@@ -17,6 +18,7 @@ export function KeywordText({ id, text, active, defocused, onToggle }: KeywordTe
       data-defocused={defocused}
       onClick={() => onToggle(id)}
       aria-expanded={active}
+      aria-controls={controls}
       aria-label={text}
     >
       {text}

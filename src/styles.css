@@ -117,6 +117,25 @@ a {
   animation: text-arrive 260ms ease both;
 }
 
+.keyword-wrap {
+  display: inline;
+}
+
+.cross-section {
+  display: block;
+  margin: 1.72em 0;
+  animation: cross-section-open 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.cross-section-paragraph {
+  display: block;
+  margin: 0 0 1.72em;
+}
+
+.cross-section-paragraph:last-child {
+  margin-bottom: 0;
+}
+
 @keyframes text-arrive {
   from {
     opacity: 0;
@@ -124,6 +143,19 @@ a {
   }
   to {
     opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes cross-section-open {
+  from {
+    opacity: 0;
+    transform: translateY(-0.28em);
+    filter: blur(0.12em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
     filter: blur(0);
   }
 }

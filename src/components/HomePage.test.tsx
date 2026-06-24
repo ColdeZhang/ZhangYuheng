@@ -46,4 +46,13 @@ describe('HomePage', () => {
     expect(screen.getByText(/不只做单点建模/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '数据算法工程师' })).toHaveAttribute('aria-expanded', 'true');
   });
+  it('opens cross-section evidence for long keywords', async () => {
+    const user = userEvent.setup();
+    render(<HomePage />);
+
+    await user.click(screen.getByRole('button', { name: '异常检测' }));
+
+    expect(screen.getByText(/冻干机冷凝腔外漏/)).toBeInTheDocument();
+    expect(screen.getByText(/真正进入生产决策链路/)).toBeInTheDocument();
+  });
 });
