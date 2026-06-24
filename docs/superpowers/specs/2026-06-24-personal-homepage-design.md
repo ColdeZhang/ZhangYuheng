@@ -244,11 +244,13 @@ Mode: Text cross-section evidence layer
 
 Initial content:
 
-> AI Agent 是我当前重点关注的工程方向之一。我关心的不是把 Agent 做成一次性的演示，而是让它进入真实的开发、实验、数据分析和业务决策流程。
+> Lodey 是一个开源的 AI Agent 驱动的项目管理与执行编排平台，用于将传统 Agile 工作流（Workspace / Project / Milestone / Sprint / Issue）与智能 Agent 执行体系结合，让任务从规划到执行形成自动化流转。
 >
-> 在我的理解里，Agent 的价值来自三个层面：能否稳定调用工具并处理上下文，能否把复杂任务拆成可检查的步骤，能否在人的监督下持续提高工作流效率和结果质量。
+> 系统通过 Execution Scheduler 基于状态机调度 Issue，覆盖 `backlog`、`todo`、`in_progress`、`in_review`、`blocked` 等状态，并支持 Human / Agent 混合分配，以及 Human-in-the-Loop 与 YOLO 全自治两种执行模式。
 >
-> 第一版先将这一部分作为工程关注方向展示，不绑定具体项目；如果后续有公开作品或案例，再将其接入该关键词的证据层。
+> 在执行层，Lodey 通过 MCP 协议为 Agent 提供状态更新、评论、知识检索等工具调用能力，并通过 Bureau Node 支持 Agent 分布式部署与执行。平台支持多节点调度、负载感知分配和执行日志回传；内置 Knowledge Compiler 会将 Issue、决策与评审沉淀为知识库并向量化检索，辅助后续任务执行。
+>
+> 这一部分展示的是我对 Agent 工程化的核心关注：调度、权限、工具调用、知识沉淀、自动注册、能力发现，以及 Human / Agent 协作如何从概念变成可扩展的自治研发系统。
 
 ### Minecraft 插件与相关项目
 
