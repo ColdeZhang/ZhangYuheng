@@ -8,9 +8,17 @@ describe('HomePage', () => {
   it('renders identity, email, and Chinese text by default', () => {
     render(<HomePage />);
 
-    expect(screen.getByText(/张宇衡/)).toBeInTheDocument();
-    expect(screen.getByText(/zhangyuheng@lunadeer.cn/)).toBeInTheDocument();
-    expect(screen.getByText(/数据算法工程师/)).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /张宇衡 \/ Yuheng Zhang \/ zhangyuheng@lunadeer.cn/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText((text, element) =>
+        Boolean(
+          element?.classList.contains('mother-paragraph') &&
+            text.startsWith('我是张宇衡，数据算法工程师'),
+        ),
+      ),
+    ).toBeInTheDocument();
   });
 
   it('switches language while keeping the same text system', async () => {
@@ -19,7 +27,13 @@ describe('HomePage', () => {
 
     await user.click(screen.getByRole('button', { name: /switch language/i }));
 
-    expect(screen.getByText(/Yuheng Zhang/)).toBeInTheDocument();
-    expect(screen.getByText(/data algorithm engineer/)).toBeInTheDocument();
+    expect(
+      screen.getByText((text, element) =>
+        Boolean(
+          element?.classList.contains('mother-paragraph') &&
+            text.startsWith("I'm Yuheng Zhang, a data algorithm engineer"),
+        ),
+      ),
+    ).toBeInTheDocument();
   });
 });

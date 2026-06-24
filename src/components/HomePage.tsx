@@ -7,12 +7,7 @@ export function HomePage() {
   const content = homepageContent[locale];
 
   const paragraphText = useMemo(
-    () =>
-      content.segments
-        .map((segment) => segment.text)
-        .join('')
-        .replace(/^我是张宇衡，/, '我是')
-        .replace(/^I'm Yuheng Zhang, /, "I'm "),
+    () => content.segments.map((segment) => segment.text).join(''),
     [content.segments],
   );
 
