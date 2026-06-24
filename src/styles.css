@@ -1,0 +1,26 @@
+:root {
+  color: #111827;
+  background: #fbfaf6;
+  font-family: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: clamp(20px, 1.75vw, 30px);
+  line-height: 1.72;
+  font-weight: 450;
+  text-rendering: geometricPrecision;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #fbfaf6;
+}
+
+button,
+a {
+  font: inherit;
+  color: inherit;
+}
