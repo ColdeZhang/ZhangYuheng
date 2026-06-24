@@ -46,7 +46,7 @@ export function InteractiveParagraph({
               <span className="inline-rewrite"> {keyword.content[locale][0]}</span>
             ) : null}
             {active && keyword.mode === 'crossSection' ? (
-              <ExpansionContent id={expansionId} paragraphs={keyword.content[locale]} />
+              <ExpansionContent id={expansionId} label={segment.text} paragraphs={keyword.content[locale]} />
             ) : null}
           </span>
         );

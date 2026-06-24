@@ -52,6 +52,7 @@ describe('HomePage', () => {
 
     await user.click(screen.getByRole('button', { name: '异常检测' }));
 
+    expect(screen.getByRole('region', { name: '异常检测' })).toBeInTheDocument();
     expect(screen.getByText(/冻干机冷凝腔外漏/)).toBeInTheDocument();
     expect(screen.getByText(/真正进入生产决策链路/)).toBeInTheDocument();
   });
