@@ -10,6 +10,26 @@ type InteractiveParagraphProps = {
   onToggleKeyword: (id: KeywordId) => void;
 };
 
+const leadingPunctuationPattern = /^[、，,.;；:：。]+/;
+
+function getLeadingPunctuation(segment: TextSegment | undefined) {
+  if (!segment || segment.kind !== 'text') {
+    return '';
+  }
+
+  return segment.text.match(leadingPunctuationPattern)?.[0] ?? '';
+}
+
+function followsActiveCrossSection(segments: TextSegment[], index: number, activeKeyword: KeywordId | null) {
+  const previous = segments[index - 1];
+
+  if (!previous || previous.kind !== 'keyword' || previous.keywordId !== activeKeyword) {
+    return false;
+  }
+
+  return homepageContent.keywords[previous.keywordId].mode === 'crossSection';
+}
+
 export function InteractiveParagraph({
   locale,
   segments,
@@ -20,9 +40,17 @@ export function InteractiveParagraph({
     <p className="mother-paragraph" data-expanded={Boolean(activeKeyword)}>
       {segments.map((segment, index) => {
         if (segment.kind === 'text') {
+          const text = followsActiveCrossSection(segments, index, activeKeyword)
+            ? segment.text.replace(leadingPunctuationPattern, '')
+            : segment.text;
+
+          if (!text) {
+            return null;
+          }
+
           return (
             <span key={`${segment.text}-${index}`} className="text-fragment" data-defocused={Boolean(activeKeyword)}>
-              {segment.text}
+              {text}
             </span>
           );
         }
@@ -31,6 +59,9 @@ export function InteractiveParagraph({
         const active = activeKeyword === segment.keywordId;
         const defocused = Boolean(activeKeyword) && !active;
         const expansionId = `expansion-${segment.keywordId}`;
+        const trailingPunctuation = active && keyword.mode === 'crossSection'
+          ? getLeadingPunctuation(segments[index + 1])
+          : '';
 
         return (
           <span key={`${segment.keywordId}-${index}`} className="keyword-wrap">
@@ -42,6 +73,7 @@ export function InteractiveParagraph({
               onToggle={onToggleKeyword}
               controls={keyword.mode === 'crossSection' ? expansionId : undefined}
             />
+            {trailingPunctuation}
             {active && keyword.mode === 'inline' ? (
               <span className="inline-rewrite"> {keyword.content[locale][0]}</span>
             ) : null}
