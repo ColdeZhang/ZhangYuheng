@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sentence Interaction Concepts</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #111827;
+      background: #f8fafc;
+    }
+    main {
+      width: min(1180px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 12px 0 28px;
+      color: #64748b;
+      font-size: 15px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      min-width: 0;
+      border: 1px solid #111827;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 6px 6px 0 #111827;
+    }
+    .stage {
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #111827;
+    }
+    .body { padding: 18px; }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p {
+      margin: 0;
+      color: #475569;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .pill {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 1px solid #111827;
+      border-radius: 999px;
+      font-weight: 750;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .dark { background: #111827; color: #fff; }
+    .green { background: #34d399; }
+    .yellow { background: #fbbf24; }
+    .blue { background: #8bd3ff; }
+    .pink { background: #fda4af; }
+    .purple { background: #c4b5fd; }
+    .shadow { box-shadow: 5px 5px 0 #111827; }
+    .card:hover .pulse { transform: translateY(-8px); }
+    .pulse { transition: transform 320ms cubic-bezier(.2,.8,.2,1); }
+    .line { position: absolute; height: 1px; background: #111827; transform-origin: left; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      main { width: min(620px, calc(100vw - 28px)); padding: 28px 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>“可点击的一句话”：三种展开交互</h1>
+    <p class="subtitle">这不是最终页面，只用来比较交互气质：清楚、丰富、轻松，且避免传统 landing page。</p>
+
+    <section class="grid">
+      <article class="card">
+        <div class="stage" style="background:#fbfbf8">
+          <div class="mono" style="position:absolute;left:30px;right:30px;top:36px;font-weight:750;font-size:20px;line-height:2.5">
+            I build <span class="pill dark pulse">industrial AI</span><br>
+            that <span class="pill green pulse">runs fast</span>
+            and <span class="pill yellow pulse">stays useful</span>.
+          </div>
+          <div class="pulse shadow" style="position:absolute;left:56px;right:56px;bottom:30px;height:82px;background:white;border:1px solid #111827;border-radius:8px">
+            <div style="position:absolute;left:18px;top:16px;width:98px;height:9px;background:#111827"></div>
+            <div style="position:absolute;left:18px;top:40px;width:220px;height:7px;background:#d1d5db"></div>
+            <div style="position:absolute;right:18px;top:26px;width:56px;height:28px;background:#34d399;border:1px solid #111827;border-radius:16px"></div>
+          </div>
+        </div>
+        <div class="body">
+          <h2>Inline Bloom</h2>
+          <p>关键词点击后在原句下方长出证据卡。最轻、最一目了然，适合做“简约但不空”的版本。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="stage" style="background:#f4f7ff">
+          <div class="shadow" style="position:absolute;left:30px;right:30px;top:30px;height:56px;background:white;border:1px solid #111827;border-radius:30px">
+            <div style="position:absolute;left:28px;top:21px;width:235px;height:12px;background:#111827"></div>
+            <div class="pill green" style="position:absolute;right:18px;top:10px">fast</div>
+          </div>
+          <div class="pulse shadow" style="position:absolute;left:30px;right:30px;bottom:32px;height:138px;background:white;border:1px solid #111827;border-radius:10px">
+            <div style="position:absolute;left:20px;top:22px;width:82px;height:82px;background:#111827;border-radius:8px"></div>
+            <div style="position:absolute;left:124px;top:24px;width:132px;height:10px;background:#111827"></div>
+            <div style="position:absolute;left:124px;top:56px;width:190px;height:7px;background:#d1d5db"></div>
+            <div style="position:absolute;left:124px;top:80px;width:146px;height:7px;background:#d1d5db"></div>
+          </div>
+        </div>
+        <div class="body">
+          <h2>Stage Shift</h2>
+          <p>点击关键词后，句子缩到顶部，整页变成该关键词的舞台。更精彩，适合展示项目故事和动画。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="stage" style="background:#fff7ed">
+          <div class="mono" style="position:absolute;left:42px;right:42px;top:34px;font-weight:750;font-size:18px;line-height:2.5">
+            I build <span class="pill dark pulse">AI</span> for <span class="pill blue pulse">systems</span><br>
+            with <span class="pill green pulse">speed</span> and <span class="pill yellow pulse">taste</span>.
+          </div>
+          <div style="position:absolute;left:48px;right:48px;bottom:44px;height:86px;border:1px solid #111827;border-radius:44px;background:white"></div>
+          <div class="pill green shadow" style="position:absolute;left:72px;bottom:72px">工程</div>
+          <div class="pill yellow shadow" style="position:absolute;left:146px;bottom:72px">算法</div>
+          <div class="pill pink shadow" style="position:absolute;left:220px;bottom:72px">研究</div>
+          <div class="pill purple shadow" style="position:absolute;left:294px;bottom:72px">作品</div>
+        </div>
+        <div class="body">
+          <h2>Sentence Engine</h2>
+          <p>词块可组合，重组整句和内容。最有创意，但交互复杂度最高，需要强引导才能轻松。</p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

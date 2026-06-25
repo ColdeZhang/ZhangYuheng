@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import type { KeywordId, Locale, TextSegment } from '../content/homepageContent';
 import { homepageContent } from '../content/homepageContent';
 import { ExpansionContent } from './ExpansionContent';
+import { InlineRewrite } from './InlineRewrite';
 import { KeywordText } from './KeywordText';
 
 type InteractiveParagraphProps = {
@@ -9,6 +11,8 @@ type InteractiveParagraphProps = {
   activeKeyword: KeywordId | null;
   onToggleKeyword: (id: KeywordId) => void;
 };
+
+const exitAnimationMs = 760;
 
 const leadingPunctuationPattern = /^[、，,.;；:：。]+/;
 
@@ -36,11 +40,33 @@ export function InteractiveParagraph({
   activeKeyword,
   onToggleKeyword,
 }: InteractiveParagraphProps) {
+  const [renderedKeyword, setRenderedKeyword] = useState<KeywordId | null>(activeKeyword);
+  const [expansionState, setExpansionState] = useState<'open' | 'closing'>('open');
+
+  useEffect(() => {
+    if (activeKeyword) {
+      setRenderedKeyword(activeKeyword);
+      setExpansionState('open');
+      return undefined;
+    }
+
+    if (!renderedKeyword) {
+      return undefined;
+    }
+
+    setExpansionState('closing');
+    const timeout = window.setTimeout(() => {
+      setRenderedKeyword(null);
+    }, exitAnimationMs);
+
+    return () => window.clearTimeout(timeout);
+  }, [activeKeyword, renderedKeyword]);
+
   return (
-    <p className="mother-paragraph" data-expanded={Boolean(activeKeyword)}>
+    <p className="mother-paragraph" data-expanded={Boolean(renderedKeyword)}>
       {segments.map((segment, index) => {
         if (segment.kind === 'text') {
-          const text = followsActiveCrossSection(segments, index, activeKeyword)
+          const text = followsActiveCrossSection(segments, index, renderedKeyword)
             ? segment.text.replace(leadingPunctuationPattern, '')
             : segment.text;
 
@@ -49,7 +75,7 @@ export function InteractiveParagraph({
           }
 
           return (
-            <span key={`${segment.text}-${index}`} className="text-fragment" data-defocused={Boolean(activeKeyword)}>
+            <span key={`${segment.text}-${index}`} className="text-fragment" data-defocused={Boolean(renderedKeyword)}>
               {text}
             </span>
           );
@@ -57,9 +83,10 @@ export function InteractiveParagraph({
 
         const keyword = homepageContent.keywords[segment.keywordId];
         const active = activeKeyword === segment.keywordId;
-        const defocused = Boolean(activeKeyword) && !active;
+        const visible = renderedKeyword === segment.keywordId;
+        const defocused = Boolean(renderedKeyword) && !visible;
         const expansionId = `expansion-${segment.keywordId}`;
-        const trailingPunctuation = active && keyword.mode === 'crossSection'
+        const trailingPunctuation = visible && keyword.mode === 'crossSection'
           ? getLeadingPunctuation(segments[index + 1])
           : '';
 
@@ -74,11 +101,16 @@ export function InteractiveParagraph({
               controls={keyword.mode === 'crossSection' ? expansionId : undefined}
             />
             {trailingPunctuation}
-            {active && keyword.mode === 'inline' ? (
-              <span className="inline-rewrite"> {keyword.content[locale][0]}</span>
+            {visible && keyword.mode === 'inline' ? (
+              <InlineRewrite text={keyword.content[locale][0]} state={expansionState} />
             ) : null}
-            {active && keyword.mode === 'crossSection' ? (
-              <ExpansionContent id={expansionId} label={segment.text} paragraphs={keyword.content[locale]} />
+            {visible && keyword.mode === 'crossSection' ? (
+              <ExpansionContent
+                id={expansionId}
+                label={segment.text}
+                paragraphs={keyword.content[locale]}
+                state={expansionState}
+              />
             ) : null}
           </span>
         );

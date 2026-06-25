@@ -4,7 +4,7 @@ import { InteractiveParagraph } from './InteractiveParagraph';
 import { MetaLine } from './MetaLine';
 
 export function HomePage() {
-  const [locale, setLocale] = useState<Locale>('zh');
+  const [locale, setLocale] = useState<Locale>('en');
   const [activeKeyword, setActiveKeyword] = useState<KeywordId | null>(null);
   const content = homepageContent[locale];
 

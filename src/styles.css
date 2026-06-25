@@ -68,7 +68,10 @@ a {
   background-size: 100% 20%, 0 88%;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  transition: background-size 320ms ease, filter 260ms ease, opacity 260ms ease;
+  transition:
+    background-size 320ms ease,
+    filter 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .keyword {
@@ -87,7 +90,11 @@ a {
   cursor: pointer;
   color: inherit;
   line-height: inherit;
-  transition: background-size 320ms ease, filter 260ms ease, opacity 260ms ease;
+  transition:
+    background-size 320ms ease,
+    filter 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: filter, opacity;
 }
 
 .keyword:hover,
@@ -106,17 +113,39 @@ a {
 }
 
 .text-fragment {
-  transition: filter 260ms ease, opacity 260ms ease;
+  transition:
+    filter 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: filter, opacity;
 }
 
 .text-fragment[data-defocused="true"],
 .keyword[data-defocused="true"] {
-  filter: blur(0.08em);
-  opacity: 0.42;
+  filter: blur(0.12em);
+  opacity: 0.38;
 }
 
 .inline-rewrite {
-  animation: text-arrive 260ms ease both;
+  display: inline;
+}
+
+.inline-rewrite-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.22em);
+  filter: blur(0.1em);
+  animation: inline-char-arrive 420ms cubic-bezier(0.2, 0.86, 0.22, 1) forwards;
+  animation-delay: var(--char-delay);
+  white-space: pre;
+  will-change: opacity, transform, filter;
+}
+
+.inline-rewrite[data-state="closing"] .inline-rewrite-char {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  animation: inline-char-leave 280ms cubic-bezier(0.42, 0, 0.78, 0.18) forwards;
+  animation-delay: var(--char-exit-delay);
 }
 
 .keyword-wrap {
@@ -124,41 +153,113 @@ a {
 }
 
 .cross-section {
-  display: block;
+  display: grid;
+  grid-template-rows: 0fr;
   margin: 1.72em 0;
-  animation: cross-section-open 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  overflow: clip;
+  animation: cross-section-space-open 620ms cubic-bezier(0.18, 0.86, 0.2, 1) forwards;
+}
+
+.cross-section[data-state="closing"] {
+  grid-template-rows: 1fr;
+  animation: cross-section-space-close 560ms cubic-bezier(0.42, 0, 0.22, 1) 160ms forwards;
+}
+
+.cross-section-inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .cross-section-paragraph {
   display: block;
   margin: 0 0 1.72em;
+  opacity: 0;
+  transform: translateY(0.34em);
+  filter: blur(0.12em);
+  animation: cross-section-text-arrive 540ms cubic-bezier(0.2, 0.82, 0.22, 1) forwards;
+  animation-delay: var(--paragraph-delay);
+  will-change: opacity, transform, filter;
+}
+
+.cross-section[data-state="closing"] .cross-section-paragraph {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  animation: cross-section-text-leave 260ms cubic-bezier(0.42, 0, 0.78, 0.18) forwards;
+  animation-delay: var(--paragraph-exit-delay);
 }
 
 .cross-section-paragraph:last-child {
   margin-bottom: 0;
 }
 
-@keyframes text-arrive {
+@keyframes inline-char-arrive {
   from {
     opacity: 0;
-    filter: blur(0.08em);
+    transform: translateY(0.22em);
+    filter: blur(0.1em);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
     filter: blur(0);
   }
 }
 
-@keyframes cross-section-open {
+@keyframes inline-char-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.16em);
+    filter: blur(0.08em);
+  }
+}
+
+@keyframes cross-section-space-open {
+  from {
+    grid-template-rows: 0fr;
+  }
+  to {
+    grid-template-rows: 1fr;
+  }
+}
+
+@keyframes cross-section-space-close {
+  from {
+    grid-template-rows: 1fr;
+  }
+  to {
+    grid-template-rows: 0fr;
+  }
+}
+
+@keyframes cross-section-text-arrive {
   from {
     opacity: 0;
-    transform: translateY(-0.28em);
+    transform: translateY(0.34em);
     filter: blur(0.12em);
   }
   to {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+@keyframes cross-section-text-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.18em);
+    filter: blur(0.1em);
   }
 }
 
@@ -195,6 +296,17 @@ a {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 1ms !important;
+  }
+
+  .cross-section {
+    grid-template-rows: 1fr !important;
+  }
+
+  .inline-rewrite-char,
+  .cross-section-paragraph {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 

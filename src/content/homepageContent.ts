@@ -37,6 +37,15 @@ type LocalizedHomepage = {
   segments: TextSegment[];
 };
 
+const experienceStartDate = new Date('2022-03-01T00:00:00+08:00');
+
+export function getYearsOfExperience(now = new Date()) {
+  const averageYearMs = 365.2425 * 24 * 60 * 60 * 1000;
+  return ((now.getTime() - experienceStartDate.getTime()) / averageYearMs).toFixed(2);
+}
+
+const yearsOfExperience = getYearsOfExperience();
+
 export const homepageContent: {
   zh: LocalizedHomepage;
   en: LocalizedHomepage;
@@ -49,15 +58,11 @@ export const homepageContent: {
       languageLabel: '中 / EN',
     },
     segments: [
-      { kind: 'text', text: '我是张宇衡，' },
-      { kind: 'keyword', keywordId: 'roleDataAlgorithm', text: '数据算法工程师' },
-      { kind: 'text', text: '与 ' },
-      { kind: 'keyword', keywordId: 'roleAgent', text: 'AI Agent 工程师' },
-      { kind: 'text', text: '，' },
+      { kind: 'text', text: `我是张宇衡，数据算法工程师，拥有 ${yearsOfExperience} 年工作经验，也在做 AI Agent 工程化方向的探索。本科` },
       { kind: 'keyword', keywordId: 'education', text: '毕业于西南交通大学' },
       { kind: 'text', text: '，' },
       { kind: 'keyword', keywordId: 'employment', text: '目前就职于上海华讯网络系统有限公司' },
-      { kind: 'text', text: '，关注复杂数据系统如何从模型走向稳定、可用、可维护的工程现实。我的工作横跨' },
+      { kind: 'text', text: '，日常工作不仅仅是完成模型训练本身，更在于将模型有效落地到真实业务场景中，使其具备端到端的工程可用性：包括数据链路的稳定接入与持续可用、推理服务的高可靠运行，以及跨团队在理解、验证与持续迭代维护方面的协同能力。过去几年的项目主要围绕' },
       { kind: 'keyword', keywordId: 'industrialAi', text: '工业智能' },
       { kind: 'text', text: '、' },
       { kind: 'keyword', keywordId: 'timeSeries', text: '时序预测' },
@@ -65,23 +70,11 @@ export const homepageContent: {
       { kind: 'keyword', keywordId: 'anomalyDetection', text: '异常检测' },
       { kind: 'text', text: '、' },
       { kind: 'keyword', keywordId: 'algorithmPlatform', text: '算法平台' },
-      { kind: 'text', text: '与' },
-      { kind: 'keyword', keywordId: 'performanceEngineering', text: '高性能工程' },
-      { kind: 'text', text: '，也包括将 AI 能力接入真实业务流程的 ' },
+      { kind: 'text', text: '展开，也包括 C++/Python 混合加速、GPU 调度、边缘部署和生产环境里的性能调优。最近我也在把这类工程经验延伸到 ' },
       { kind: 'keyword', keywordId: 'agentPractice', text: 'Agent 化实践' },
-      { kind: 'text', text: '。相比单点模型效果，我更在意系统在真实环境中的' },
-      { kind: 'keyword', keywordId: 'reliability', text: '可靠性' },
-      { kind: 'text', text: '、' },
-      { kind: 'keyword', keywordId: 'interpretability', text: '解释性' },
-      { kind: 'text', text: '、' },
-      { kind: 'keyword', keywordId: 'performanceBoundary', text: '性能边界' },
-      { kind: 'text', text: '，以及它是否能持续产生清楚的业务价值。工作之外，我长期维护 ' },
+      { kind: 'text', text: '里，思考智能体怎样真正进入研发流程、任务编排和知识沉淀，而不是停留在演示效果上。我更关心系统在噪声数据、资源约束和业务变化下能否持续工作，输出是否能被业务、工艺或产品团队采纳，以及性能边界是否清楚。工作之外，我长期维护 ' },
       { kind: 'keyword', keywordId: 'minecraftProjects', text: 'Minecraft 插件与相关项目' },
-      { kind: 'text', text: '，也持续关注' },
-      { kind: 'keyword', keywordId: 'generativeAi', text: '生成式 AI' },
-      { kind: 'text', text: '、时间序列建模和' },
-      { kind: 'keyword', keywordId: 'developerTooling', text: '开发工具链' },
-      { kind: 'text', text: '的演进。' },
+      { kind: 'text', text: '；它们和我的职业方向不完全重合，但一直提醒我，好的系统最终还是要让真实的人愿意用、用得久。' },
     ],
   },
   en: {
@@ -91,15 +84,11 @@ export const homepageContent: {
       languageLabel: 'EN / 中',
     },
     segments: [
-      { kind: 'text', text: "I'm Yuheng Zhang, " },
-      { kind: 'keyword', keywordId: 'roleDataAlgorithm', text: 'a data algorithm engineer' },
-      { kind: 'text', text: ' and ' },
-      { kind: 'keyword', keywordId: 'roleAgent', text: 'AI Agent engineer' },
-      { kind: 'text', text: '. I ' },
+      { kind: 'text', text: `I'm Yuheng Zhang, a data algorithm engineer with ${yearsOfExperience} years of experience who is also exploring AI Agent engineering. I ` },
       { kind: 'keyword', keywordId: 'education', text: 'graduated from Southwest Jiaotong University' },
       { kind: 'text', text: ' and ' },
       { kind: 'keyword', keywordId: 'employment', text: 'currently work at Shanghai Huaxun Network Systems' },
-      { kind: 'text', text: ', focusing on how complex data systems move from models into stable, usable, and maintainable engineering reality. My work spans ' },
+      { kind: 'text', text: ', where daily work is not only about completing model training, but about effectively landing models in real business scenarios with end-to-end engineering usability: stable and continuously available data pipelines, highly reliable inference services, and cross-team collaboration around understanding, validation, iteration, and maintenance. My recent projects span ' },
       { kind: 'keyword', keywordId: 'industrialAi', text: 'industrial intelligence' },
       { kind: 'text', text: ', ' },
       { kind: 'keyword', keywordId: 'timeSeries', text: 'time-series forecasting' },
@@ -107,23 +96,11 @@ export const homepageContent: {
       { kind: 'keyword', keywordId: 'anomalyDetection', text: 'anomaly detection' },
       { kind: 'text', text: ', ' },
       { kind: 'keyword', keywordId: 'algorithmPlatform', text: 'algorithm platforms' },
-      { kind: 'text', text: ', and ' },
-      { kind: 'keyword', keywordId: 'performanceEngineering', text: 'high-performance engineering' },
-      { kind: 'text', text: ', as well as ' },
+      { kind: 'text', text: ', along with C++/Python acceleration, GPU scheduling, edge deployment, and production performance tuning. I have also been extending that engineering lens into ' },
       { kind: 'keyword', keywordId: 'agentPractice', text: 'Agent-based practice' },
-      { kind: 'text', text: ' for bringing AI into real workflows. I care less about isolated model scores than about ' },
-      { kind: 'keyword', keywordId: 'reliability', text: 'reliability' },
-      { kind: 'text', text: ', ' },
-      { kind: 'keyword', keywordId: 'interpretability', text: 'interpretability' },
-      { kind: 'text', text: ', ' },
-      { kind: 'keyword', keywordId: 'performanceBoundary', text: 'performance boundaries' },
-      { kind: 'text', text: ', and whether a system can keep producing clear value in the real world. Outside work, I maintain ' },
+      { kind: 'text', text: ', thinking about how Agents can enter development workflows, task orchestration, and knowledge capture instead of staying at the demo layer. I care about whether a system keeps working under noisy data, resource limits, and changing business context; whether its output can be adopted by business, process, or product teams; and whether its performance boundaries are honest. Outside work, I maintain ' },
       { kind: 'keyword', keywordId: 'minecraftProjects', text: 'Minecraft plugins and related projects' },
-      { kind: 'text', text: ', while continuing to follow ' },
-      { kind: 'keyword', keywordId: 'generativeAi', text: 'generative AI' },
-      { kind: 'text', text: ', time-series modeling, and ' },
-      { kind: 'keyword', keywordId: 'developerTooling', text: 'developer tooling' },
-      { kind: 'text', text: '.' },
+      { kind: 'text', text: '; they are not the center of my professional story, but they keep me close to the simple question of whether real people will enjoy using what I build.' },
     ],
   },
   keywords: {
@@ -144,22 +121,22 @@ export const homepageContent: {
     education: {
       mode: 'inline',
       content: {
-        zh: ['毕业于西南交通大学，本科专业为公共事业管理，之后长期转向数据、算法与工程系统方向。'],
-        en: ['I graduated from Southwest Jiaotong University with a public administration background, then moved deeply into data, algorithms, and engineering systems.'],
+        zh: ['公共事业管理专业，之后长期转向数据、算法与工程系统方向。'],
+        en: ['Public administration major, then a long-term shift into data, algorithms, and engineering systems.'],
       },
     },
     employment: {
       mode: 'crossSection',
       content: {
         zh: [
-          '2022.07 至今，我在上海华讯网络系统有限公司从事机器学习、工业智能与算法平台方向研发。工作内容覆盖制药生产过程、AR 场景、气象预测等业务领域，重点在于把算法研发、系统架构和工程化落地连接成可交付的技术方案。',
-          '在工程侧，我参与或主导基于 C++ 的算法平台架构设计、多语言算法接口标准化、GPU 资源调度与负载均衡、高性能推理加速，以及边缘部署优化。在算法侧，我负责多源时序数据建模、机器视觉、空间定位、异常检测、质量预测与工艺参数推荐等能力建设。',
-          '这段经历最核心的部分不是某一个模型，而是把复杂业务问题拆解为可验证、可部署、可维护的系统能力。',
+          '2022.07 至今，我在上海华讯网络系统有限公司做机器学习与算法系统相关研发。工作覆盖制药生产、AR 视频融合、气象雷达预测等场景，很多时候需要先和业务、工艺、产品团队一起把问题拆清楚，再决定该用模型、规则、统计方法，还是先补齐数据和工程链路。',
+          '我承担过两类互相交叉的工作：一类是算法能力本身，包括多源时序建模、机器视觉、空间定位、异常检测、质量预测和工艺参数推荐；另一类是让这些能力稳定交付，包括 C++ 算法平台架构、多语言接口标准化、Python/C++ 混合加速、GPU 资源调度、高性能推理和边缘设备部署。',
+          '这段经历让我形成了一个比较固定的判断标准：算法不能只停在实验报告里。它需要有清楚的输入输出、可解释的结果、可验证的收益，也需要在真实生产环境里承受噪声、延迟、算力和维护成本。',
         ],
         en: [
-          'Since July 2022, I have worked at Shanghai Huaxun Network Systems on machine learning, industrial intelligence, and algorithm platforms across pharmaceutical production, AR scenarios, and weather forecasting.',
-          'On the engineering side, my work includes C++ platform architecture, multilingual algorithm interfaces, GPU scheduling, high-performance inference, and edge deployment. On the algorithm side, it includes time-series modeling, machine vision, spatial localization, anomaly detection, quality prediction, and process parameter recommendation.',
-          'The important part is not a single model, but turning complex business problems into verifiable, deployable, and maintainable system capabilities.',
+          'Since July 2022, I have worked at Shanghai Huaxun Network Systems on machine learning and algorithm systems across pharmaceutical production, AR video fusion, and weather radar forecasting. The work often starts by clarifying the real problem with business, process, and product teams before deciding whether the answer should be a model, a rule, a statistical method, or better data infrastructure.',
+          'My work has two sides that constantly meet each other: algorithm capability, including multisource time-series modeling, machine vision, spatial localization, anomaly detection, quality prediction, and process parameter recommendation; and delivery engineering, including C++ algorithm platform architecture, multilingual interfaces, Python/C++ acceleration, GPU scheduling, high-performance inference, and edge deployment.',
+          'That experience shaped my standard for useful AI work: an algorithm should not live only in an experiment report. It needs clear inputs and outputs, interpretable results, measurable value, and enough engineering discipline to handle noise, latency, compute limits, and maintenance in production.',
         ],
       },
     },
@@ -167,14 +144,14 @@ export const homepageContent: {
       mode: 'crossSection',
       content: {
         zh: [
-          '在工业智能方向，我主要处理来自生产过程、设备状态和传感器信号的多源数据，将异常检测、质量预测和参数推荐组合成面向真实工艺现场的决策支持能力。',
-          '代表项目是阿斯利康制药设备关键工艺参数优化与预测性维护。系统围绕冻干机、流化床、压片机等关键装备和工艺环节，构建覆盖风险识别、质量一致性评估和参数推荐的分析框架。',
-          '这些工作强调的不只是模型准确率，还包括生产现场中的稳定性、可解释性、提前预警价值，以及是否能减少对人工经验的单点依赖。',
+          '工业智能是我目前最主要的业务场景。制药生产里的数据通常不干净，也不总是按照建模最舒服的方式出现：设备状态、传感器信号、工艺参数、质量结果之间有延迟、有噪声，也有很多来自现场经验的隐性约束。',
+          '在阿斯利康制药设备关键工艺参数优化与预测性维护项目中，我围绕冻干机、流化床、压片机等装备构建数据驱动的监测和决策支持能力。系统需要同时覆盖异常识别、质量预测和参数推荐，既要能提前发现风险，也要能解释为什么建议调整某个工艺参数。',
+          '我在这类项目里最在意的是“能不能进入生产决策”。模型准确率当然重要，但更重要的是结果能否被工艺、设备和质量团队理解，能否提前给出足够可操作的预警，能否减少对单个专家经验的依赖，并最终降低报废、返工和非计划停机风险。',
         ],
         en: [
-          'In industrial intelligence, I work with multisource data from production processes, equipment states, and sensor signals, combining anomaly detection, quality prediction, and parameter recommendation into decision support for real process environments.',
-          'A representative project is key process parameter optimization and predictive maintenance for AstraZeneca pharmaceutical equipment, covering freeze dryers, fluid beds, tablet presses, and related process stages.',
-          'The work is about more than model accuracy: it also depends on stability, interpretability, early warning value, and reducing reliance on isolated human experience.',
+          'Industrial intelligence is my main business domain today. Production data is rarely tidy: equipment states, sensor signals, process parameters, and quality outcomes arrive with delay, noise, and many implicit constraints from real operating experience.',
+          'In the AstraZeneca pharmaceutical equipment project, I worked on data-driven monitoring and decision support around freeze dryers, fluid beds, tablet presses, and related process stages. The system needs to connect anomaly detection, quality prediction, and parameter recommendation so it can warn early and explain why a process adjustment is suggested.',
+          'What matters to me in these projects is whether the model can enter production decisions. Accuracy matters, but so do interpretability, usable warning time, reduced dependence on individual expert experience, and the ability to lower scrap, rework, and unplanned downtime risk.',
         ],
       },
     },
@@ -182,14 +159,14 @@ export const homepageContent: {
       mode: 'crossSection',
       content: {
         zh: [
-          '时序预测是我工作和研究中持续关注的方向。一部分来自气象雷达降雨临近预测：基于 TCN 构建雷达回波时序预测模型，引入空间特征建模机制，同时学习时间演化和空间相关性，用于短时强降水、雷暴等强对流天气场景。',
-          '这个项目的工程难点在于雷达数据时空分辨率高、噪声强、实时性要求高。我参与使用 C++ 并行计算进行高性能预处理和特征构建，以满足滚动预测的分钟级更新需求。',
-          '另一部分是 TRACE 研究：从大语言模型中提取事件、因果、规则和情境知识，并通过采样一致性、跨 LLM 验证和数据锚定评估可靠性，再将结构化知识编码用于增强时间序列预测。',
+          '时序预测一部分来自工程项目，一部分来自我正在准备的 TRACE 研究。在气象雷达降雨临近预测项目里，我参与构建基于 TCN 的雷达回波序列预测模型，并在结构中加入空间特征建模，让模型同时理解时间演化和空间相关性。',
+          '这个场景很考验工程实现：雷达数据分辨率高、噪声强、更新频率快，预测结果还要能服务短时强降水、雷暴等强对流天气场景。我参与使用 C++ 并行计算做雷达基数据预处理和特征构建，目标是把滚动预测的数据准备压到分钟级更新可以接受的范围内。',
+          'TRACE 则是在研究另一类问题：时间序列模型往往缺少外部事件、因果关系、规则和情境知识。我尝试从大语言模型中提取这些结构化知识，再用采样一致性、跨 LLM 验证和数据锚定来评估可靠性，最后用轻量知识编码器把它们引入预测模型。',
         ],
         en: [
-          'Time-series forecasting is a continuing theme in both my work and research. In weather radar nowcasting, I worked with TCN-based radar echo sequence prediction and spatial-temporal modeling for short-term heavy rainfall and thunderstorm scenarios.',
-          'The engineering challenge was high-resolution, noisy radar data with strict real-time requirements. I worked on C++ parallel preprocessing and feature construction for minute-level rolling updates.',
-          'In TRACE, I study reliable knowledge extraction from LLMs for time-series forecasting: extracting events, causality, rules, and context, scoring reliability, and encoding structured knowledge for forecasting models.',
+          'Time-series forecasting shows up in both my engineering work and my TRACE research. In weather radar nowcasting, I worked on TCN-based radar echo sequence prediction with spatial feature modeling so the model could learn temporal evolution and spatial correlation together.',
+          'The engineering side was demanding: radar data is high-resolution, noisy, and fast-moving, and the result needs to support short-term heavy rainfall and thunderstorm scenarios. I worked on C++ parallel preprocessing and feature construction to keep rolling prediction close to minute-level update requirements.',
+          'TRACE looks at a different weakness of time-series models: they often miss external events, causality, rules, and contextual knowledge. I explore extracting that structured knowledge from LLMs, scoring reliability through sampling consistency, cross-LLM validation, and data anchoring, then encoding it into forecasting models with a lightweight knowledge encoder.',
         ],
       },
     },
@@ -197,16 +174,14 @@ export const homepageContent: {
       mode: 'crossSection',
       content: {
         zh: [
-          '异常检测相关工作主要面向工业过程中的早期风险识别。场景包括冻干机冷凝腔外漏、产品腔/冷凝腔内漏、压力升测试失败，流化床出风温湿度异常，以及压片机预压/主压数值异常等。',
-          '在制药设备项目中，我围绕多源过程数据与传感器信号构建正常工况特征模型，用于识别工况偏离、设备异常与质量风险。冻干场景关注外漏、内漏和压力升测试失败；流化床场景关注出风温湿度异常与混合均匀性；压片场景关注预压/主压异常、模具磨损趋势和更换预测。',
-          '我更关注异常检测在生产系统中的实际位置：它需要在失控前发现偏离趋势，让工艺、设备和质量团队有足够时间介入，而不是事后解释一次失败。它也需要和质量预测、参数推荐、计划性维护一起工作，才会真正进入生产决策链路。',
-          '这类能力最终服务于降低整批报废、冻干失败、不合格片和非计划停机等风险，并减少对人工经验的单点依赖。',
+          '我做的异常检测不是单纯找离群点，而是面向生产过程的早期风险识别。典型场景包括冻干机冷凝腔外漏、产品腔/冷凝腔内漏、压力升测试失败，流化床出风温湿度异常，以及压片机预压/主压数值异常。',
+          '这些问题的难点在于“异常”通常不是突然出现的。很多风险会先表现为工况偏离、趋势变化或多个变量之间关系的松动，所以需要从多源过程数据和传感器信号中建立正常工况特征，再判断哪些变化值得提醒现场团队。',
+          '在冻干、流化床和压片场景里，异常检测通常还要和质量预测、参数推荐、模具磨损趋势判断、计划性维护结合起来。只有这样，它才不只是一个报警模块，而是能进入生产决策链路，帮助降低整批报废、冻干失败、不合格片和非计划停机风险。',
         ],
         en: [
-          'My anomaly detection work focuses on early risk identification in industrial processes, including freeze dryer leaks and pressure-rise test failures, outlet temperature and humidity anomalies in fluid beds, and pre-pressure or main-pressure anomalies in tablet presses.',
-          'In pharmaceutical equipment projects, I build normal operating condition models from process data and sensor signals to recognize process deviations, equipment anomalies, and quality risks.',
-          'I care about where anomaly detection sits in production: it should find deviation trends before loss of control, giving process, equipment, and quality teams time to act. It also needs to work with quality prediction, parameter recommendation, and planned maintenance.',
-          'The intended value is reducing batch scrap, freeze-drying failures, nonconforming tablets, unplanned downtime, and dependence on isolated manual experience.',
+          'My anomaly detection work is less about finding isolated outliers and more about early risk identification in production processes. Typical scenarios include freeze dryer condenser leaks, product chamber or condenser chamber leaks, pressure-rise test failures, fluid-bed outlet temperature and humidity anomalies, and tablet press pre-pressure or main-pressure anomalies.',
+          'The hard part is that many failures do not appear all at once. They start as process deviation, trend drift, or weakened relationships between variables, so the system needs to model normal operating conditions from multisource process data and sensor signals before deciding which changes are worth surfacing.',
+          'In freeze-drying, fluid-bed, and tablet-press scenarios, anomaly detection also needs to connect with quality prediction, parameter recommendation, tooling wear trends, and planned maintenance. That is what turns it from an alarm module into part of the production decision chain.',
         ],
       },
     },
@@ -214,14 +189,14 @@ export const homepageContent: {
       mode: 'crossSection',
       content: {
         zh: [
-          '算法平台方向的代表工作是 AR 视频融合算法平台。平台面向多终端、多语言、多模型的统一接入与调度，覆盖从算法研发到边缘部署的完整链路。',
-          '我参与设计和实现模块化算法接口体系，统一支持 C / C++ / Python 算法接入，并以 GPU 为核心资源对象实现动态负载均衡与任务调度，提高多模型并发推理场景下的吞吐和稳定性。',
-          '在工程落地中，我也参与 Python 算法的 C++ 重写与高性能封装、推理加速、边缘设备迁移与性能调优，解决算力受限、功耗约束和实时性要求下的部署问题。',
+          '算法平台方向的代表项目是 AR 视频融合算法平台。这个平台要解决的不是某一个模型效果，而是多终端、多语言、多模型如何统一接入、调度、部署和迭代。',
+          '我参与设计和实现模块化算法接口体系，让 C / C++ / Python 算法可以用统一方式接入；同时以 GPU 为核心资源对象做动态负载均衡和任务调度，提升多模型并发推理时的吞吐、延迟和稳定性。',
+          '这类平台工作很贴近工程细节：Python 算法需要 C++ 重写或高性能封装，推理链路需要加速，模型需要迁移到边缘设备，还要在算力、功耗和实时交互要求之间做取舍。对我来说，平台的价值在于让算法迭代不再依赖临时拼装，而是进入一套可复用、可维护的交付流程。',
         ],
         en: [
-          'A representative platform project is an AR video fusion algorithm platform for unified access and scheduling across terminals, languages, and models.',
-          'I helped design modular algorithm interfaces supporting C, C++, and Python, with GPU-centered load balancing and task scheduling for stable concurrent inference.',
-          'I also worked on Python-to-C++ rewrites, high-performance wrapping, inference acceleration, edge migration, and tuning under compute, power, and latency constraints.',
+          'A representative platform project is an AR video fusion algorithm platform. The problem was not one model, but how multiple terminals, languages, and models could share a unified path for access, scheduling, deployment, and iteration.',
+          'I helped design and implement modular algorithm interfaces so C, C++, and Python algorithms could be integrated consistently. I also worked on GPU-centered load balancing and task scheduling to improve throughput, latency, and stability under concurrent inference.',
+          'This kind of platform work lives close to engineering detail: Python algorithms need C++ rewrites or high-performance wrappers, inference paths need acceleration, models need to move to edge devices, and every decision has to balance compute, power, and real-time interaction requirements.',
         ],
       },
     },
@@ -236,16 +211,16 @@ export const homepageContent: {
       mode: 'crossSection',
       content: {
         zh: [
-          'Lodey 是一个开源的 AI Agent 驱动的项目管理与执行编排平台，用于将传统 Agile 工作流（Workspace / Project / Milestone / Sprint / Issue）与智能 Agent 执行体系结合，让任务从规划到执行形成自动化流转。',
-          '系统通过 Execution Scheduler 基于状态机调度 Issue，覆盖 backlog、todo、in_progress、in_review、blocked 等状态，并支持 Human / Agent 混合分配，以及 Human-in-the-Loop 与 YOLO 全自治两种执行模式。',
-          '在执行层，Lodey 通过 MCP 协议为 Agent 提供状态更新、评论、知识检索等工具调用能力，并通过 Bureau Node 支持 Agent 分布式部署与执行。平台支持多节点调度、负载感知分配和执行日志回传；内置 Knowledge Compiler 会将 Issue、决策与评审沉淀为知识库并向量化检索，辅助后续任务执行。',
-          '这一部分展示的是我对 Agent 工程化的核心关注：调度、权限、工具调用、知识沉淀、自动注册、能力发现，以及 Human / Agent 协作如何从概念变成可扩展的自治研发系统。',
+          'Lodey 是我正在开发的一个开源（暂未发布）AI Agent 驱动的项目管理与执行编排平台。它把传统 Agile 工作流里的 Workspace / Project / Milestone / Sprint / Issue，与 Agent 执行体系放在同一套系统里，让任务可以从规划、分配、执行到评审形成连续流转。',
+          '系统里有一个基于状态机的 Execution Scheduler，用来调度 Issue 在 backlog、todo、in_progress、in_review、blocked 等状态之间流动，并支持 Human / Agent 混合分配。执行模式上，它既考虑 Human-in-the-Loop 的可控协作，也保留 YOLO 全自治执行的实验空间。',
+          '在执行层，Lodey 通过 MCP 为 Agent 提供状态更新、评论、知识检索等工具调用能力；Bureau Node 负责分布式 Agent 部署与执行，支持多节点调度、负载感知分配和执行日志回传。Knowledge Compiler 会把 Issue、决策和评审沉淀为可检索的知识库，减少后续任务重复丢上下文。',
+          '我做这个项目，是因为我觉得 Agent 真正困难的部分不在“能不能回答”，而在调度、权限、工具调用、记忆边界、能力注册、失败恢复和人与 Agent 的协作关系。它更像一个工程系统问题，而不是单纯的聊天界面问题。',
         ],
         en: [
-          'Lodey is an open-source AI-Agent-driven project management and execution orchestration platform that connects traditional Agile workflows with intelligent Agent execution.',
-          'Its Execution Scheduler dispatches Issues through states such as backlog, todo, in_progress, in_review, and blocked, supporting Human / Agent assignment and both Human-in-the-Loop and YOLO autonomous modes.',
-          'Agents receive tools through MCP for state updates, comments, knowledge retrieval, and related actions. Bureau Node enables distributed Agent deployment and execution with multi-node scheduling, load-aware assignment, and execution log return.',
-          'The built-in Knowledge Compiler turns Issues, decisions, and reviews into a searchable vectorized knowledge base. This reflects my focus on scheduling, permissions, tool use, knowledge capture, registration, capability discovery, and scalable Human / Agent collaboration.',
+          'Lodey is an open-source, not-yet-released AI-Agent-driven project management and execution orchestration platform I am developing. It puts traditional Agile entities such as Workspace, Project, Milestone, Sprint, and Issue into the same system as Agent execution, so work can flow from planning to assignment, execution, and review.',
+          'Its Execution Scheduler uses a state machine to move Issues through backlog, todo, in_progress, in_review, blocked, and related states, while supporting Human / Agent mixed assignment. It is designed for both controlled Human-in-the-Loop collaboration and experimental YOLO autonomous execution.',
+          'At the execution layer, Lodey uses MCP to give Agents tools for state updates, comments, knowledge retrieval, and related actions. Bureau Node supports distributed Agent deployment and execution with multi-node scheduling, load-aware assignment, and execution log return. Knowledge Compiler turns Issues, decisions, and reviews into a searchable knowledge base so later tasks lose less context.',
+          'I am building it because the hard part of Agents is not only whether they can answer. It is scheduling, permissions, tool use, memory boundaries, capability registration, failure recovery, and the relationship between people and Agents inside real development work.',
         ],
       },
     },
@@ -274,12 +249,12 @@ export const homepageContent: {
       mode: 'crossSection',
       content: {
         zh: [
-          '工作之外，我长期维护 Minecraft 插件与相关项目。它们不会成为整个网站的视觉主题，但会作为轻量个人作品出现，展示我对社区生态、玩法机制和技术实现的持续兴趣。',
-          'LunaDeerMC 是这一部分的主要入口：https://mc.lunadeer.cn/。这里可以保留稍微轻松的语气，但仍然强调长期维护、真实用户、工程质量和可持续迭代。',
+          '工作之外，我长期维护 Minecraft 插件与相关项目，也有独立插件站 LunaDeerMC。这个部分对我来说更像长期兴趣的延伸：一边关注社区生态和玩法机制，一边把服务端插件、配置体验、文档和维护流程做得更顺手。',
+          '它不会成为这个网站的主叙事，但能补充一个更生活化的侧面：我确实喜欢把一个系统做给真实用户用，听反馈，修问题，再慢慢把它整理成更稳定的工具。入口在 https://mc.lunadeer.cn/。',
         ],
         en: [
-          'Outside work, I maintain Minecraft plugins and related projects. They should not become the visual theme of the site, but they do show long-term interest in community ecosystems, gameplay systems, and technical implementation.',
-          'LunaDeerMC is the main lightweight entry for this part: https://mc.lunadeer.cn/. The tone can be a little lighter while still emphasizing maintenance, real users, engineering quality, and sustainable iteration.',
+          'Outside work, I maintain Minecraft plugins and related projects, including the independent plugin site LunaDeerMC. This is a long-running interest where I pay attention to community ecosystems, gameplay systems, server-side plugin behavior, configuration experience, documentation, and maintenance.',
+          'It is not the main story of this site, but it adds a more personal side: I like building systems for real users, listening to feedback, fixing problems, and gradually turning rough ideas into stable tools. The entry point is https://mc.lunadeer.cn/.',
         ],
       },
     },
